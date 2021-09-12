@@ -5,7 +5,6 @@
     <head>
         <title>Alicia's Test Site</title>
         <link href='stylesheet.css' rel='stylesheet'>
-        <h1>Welcome!</h1>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="branch:deeplink:categoryId" content="12345" data-react-helmet="true">
@@ -18,30 +17,70 @@
         </script>
     </head>
     <body>
-        <div class="eventContainer">
-            <p>Commerce Event</p>
-            <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
-        </div>
-        <div class="eventContainer">
-            <p>Content Event </p>
-            <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
-        </div>
-        <div class="eventContainer">
-            <p>User Life Cycle </p>
-            <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
-        </div>
-        <div class="eventContainer">
-            <p>Custom Event</p>
-            <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
-        </div>
-         <div class="eventContainer">
-            <button class="eventBtn" onclick="logoutUser()">Logout</button>
-        </div>
-        <div class="eventContainer">
-            <button class="eventBtn" onclick="loginUser()">Login</button>
-        </div>
+        <h3>Web SDK Demo</h3> 
+
+        Launch Journey by viewing on mWeb!
+        
+        <!-- Deep Link -->
+        <button class="eventBtn" onclick="createDeepLink()">Create Link</button>
+        <button class="eventBtn" onclick="shareDeepLink()">Share Link</button>
+        <button class="eventBtn" onclick="readDeepLink()">Read Link Data</button>
+        <!-- Track Events -->
+        <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
+        <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
+        <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
+        <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
+        <button class="eventBtn" onclick="logoutUser()">Logout</button>
+        <button class="eventBtn" onclick="loginUser()">Login</button>
 
         <script>
+            function createDeepLink(){
+                var linkData = {
+                    channel: 'desktop',
+                    feature: 'dashboard',
+                    campaign: 'deep link 123',
+                    stage: 'new user',
+                    tags: [ 'tag1', 'tag2', 'tag3' ],
+                    data: {
+                        'custom_bool': true,
+                        'custom_int': Date.now(),
+                        'custom_string': 'hello',
+                        '$og_title': 'Title',
+                        '$og_description': 'Description',
+                        '$og_image_url':'http://lorempixel.com/400/400'
+                    }
+                };
+                branch.link(linkData, function(err, link) {
+                console.log(link);
+                });
+            }
+
+            function shareDeepLink(){
+                var linkData = {
+                    channel: 'desktop',
+                    feature: 'dashboard',
+                    campaign: 'share 123',
+                    stage: 'new user',
+                    tags: [ 'tag1', 'tag2', 'tag3' ],
+                    data: {
+                        'custom_bool': true,
+                        'custom_int': Date.now(),
+                        'custom_string': 'hello',
+                        '$og_title': 'Title',
+                        '$og_description': 'Description',
+                        '$og_image_url':'http://lorempixel.com/400/400'
+                    }
+                };
+                branch.link(linkData, function(err, link) {
+                console.log(link);
+                });
+            }
+            function readDeepLink(){
+                branch.data(function(err, data) {
+                console.log(err, data);
+                });
+            }
+
             function trackCommerceEvent(){
                 var event_and_custom_data = {
                     "alias": "purchase",
