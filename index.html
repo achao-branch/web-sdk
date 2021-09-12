@@ -21,18 +21,19 @@
 
         Launch Journey by viewing on mWeb!
         
-        <!-- Deep Link -->
-        <button class="eventBtn" onclick="createDeepLink()">Create Link</button>
-        <button class="eventBtn" onclick="shareDeepLink()">Share Link</button>
-        <button class="eventBtn" onclick="readDeepLink()">Read Link Data</button>
-        <!-- Track Events -->
-        <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
-        <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
-        <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
-        <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
-        <button class="eventBtn" onclick="logoutUser()">Logout</button>
-        <button class="eventBtn" onclick="loginUser()">Login</button>
-
+        <div class="eventContainer">
+            <!-- Deep Link -->
+            <button class="eventBtn" onclick="createDeepLink()">Create Link</button>
+            <button class="eventBtn" onclick="shareDeepLink()">Share Link</button>
+            <button class="eventBtn" onclick="readDeepLink()">Read Link Data</button>
+            <!-- Track Events -->
+            <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
+            <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
+            <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
+            <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
+            <button class="eventBtn" onclick="logoutUser()">Logout</button>
+            <button class="eventBtn" onclick="loginUser()">Login</button>
+        </div>
         <script>
             function createDeepLink(){
                 var linkData = {
