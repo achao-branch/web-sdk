@@ -1,0 +1,135 @@
+<!-- View this page at: https://achao-branch.github.io/web-sdk/ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alicia's Test Site</title>
+        <link href='stylesheet.css' rel='stylesheet'>
+        <h1>Welcome!</h1>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="branch:deeplink:categoryId" content="12345" data-react-helmet="true">
+        <meta name="branch:deeplink:categoryName" content="YAS">        
+        <script>
+            // load Branch
+            (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+            // init Branch
+            branch.init('key_live_aj9ya3WxzvCsgwgDXVGDajkduzd5xGJg');
+        </script>
+    </head>
+    <body>
+        <div class="eventContainer">
+            <p>Commerce Event</p>
+            <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
+        </div>
+        <div class="eventContainer">
+            <p>Content Event </p>
+            <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
+        </div>
+        <div class="eventContainer">
+            <p>User Life Cycle </p>
+            <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
+        </div>
+        <div class="eventContainer">
+            <p>Custom Event</p>
+            <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
+        </div>
+         <div class="eventContainer">
+            <button class="eventBtn" onclick="logoutUser()">Logout</button>
+        </div>
+        <div class="eventContainer">
+            <button class="eventBtn" onclick="loginUser()">Login</button>
+        </div>
+
+        <script>
+            function trackCommerceEvent(){
+                var event_and_custom_data = {
+                    "alias": "purchase",
+                    "transaction_id": "tras_Id_1232343434",
+                    "currency": "USD",
+                    "revenue": 180.2,
+                    "shipping": 10.5,
+                    "tax": 13.5,
+                    "coupon": "promo-1234",
+                    "affiliation": "high_fi",
+                    "description": "Preferred purchase",
+                    // "purchase_loc": "Palo Alto",
+                    // "store_pickup": "unavailable"
+                };
+                var content_items = [
+                    {
+                    "$canonical_identifier": "nike/1234",
+                    "$canonical_url": "https://branch.io/item/12345",
+                    "$og_title": "Nike Shoe",
+                    "$content_schema": "COMMERCE_PRODUCT",
+                    "$quantity": 1,
+                    "$price": 101.2,
+                    "$sku": "1101123445",
+                    "$product_name": "Runner",
+                    "$product_brand": "Nike",
+                    "$product_category": "Sporting Goods",
+                    "$product_variant": "XL",
+                    "$condition": "NEW",
+                    }
+                ];
+                var customer_event_alias = "my commerce event alias";
+
+                branch.logEvent(
+                "PURCHASE",
+                event_and_custom_data,
+                content_items,
+                customer_event_alias,
+                function(err) { console.log(err); }
+                );
+            }
+            function trackContentEvent(){
+                var event_and_custom_data = {
+                    "description": "Item page",
+                    "Custom_Property_Key1": "Custom_Property_val1",
+                    "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+                };
+                var customer_event_alias = "Pageview";
+
+                branch.logEvent(
+                "VIEW_ITEMS",
+                event_and_custom_data,
+                [],
+                customer_event_alias,
+                function(err) { console.log(err); }
+                );
+            }
+            function trackLifeCycleEvent(){
+                var event_and_custom_data = {
+                    "content_type": "email registered",
+                };
+                var customer_event_alias = "complete registration";
+
+                branch.logEvent(
+                "COMPLETE_REGISTRATION",
+                event_and_custom_data,
+                [],
+                customer_event_alias,
+                function(err) { console.log(err); }
+                );
+            }
+            function trackCustomEvent(){
+                var custom_data = {
+                    "transaction_id": "Custom_Event_Property_val1",
+                    "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+                };
+                branch.logEvent(
+                    'COUPON_APPLIED',
+                    custom_data,
+                    function(err) { console.log(err); }
+                );
+            }
+            function logoutUser(){
+                branch.logout();
+            }
+            function loginUser(){
+                branch.setIdentity("chao-123");
+            }
+        </script>
+    </body>
+</html>
+
