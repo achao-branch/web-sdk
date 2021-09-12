@@ -1,0 +1,9 @@
+  
+.eventContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.eventBtn {
+    width: fit-content;
+}
