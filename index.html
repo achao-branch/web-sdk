@@ -1,5 +1,6 @@
 <!-- View this page at: https://achao-branch.github.io/web-sdk/ -->
-
+<!-- Test Journeys at: https://achao-branch.github.io/web-sdk/?_branch_view_id=965745621565324289 -->
+<!-- Test Journeys, target metadata: https://achao-branch.github.io/web-sdk?_branch_view_id=965748213872984065 -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,10 +28,10 @@
             <button class="eventBtn" onclick="shareDeepLink()">Share Link</button>
             <button class="eventBtn" onclick="readDeepLink()">Read Link Data</button>
             <!-- Track Events -->
-            <button class="eventBtn" onclick="trackCustomEvent()">Coupon Applied</button>
             <button class="eventBtn" onclick="trackCommerceEvent()">Purchase Item</button>
             <button class="eventBtn" onclick="trackContentEvent()">View Item</button>
             <button class="eventBtn" onclick="trackLifeCycleEvent()">Complete Registration</button>
+            <button class="eventBtn" onclick="trackCustomEvent()">Apply Coupon</button>
             <button class="eventBtn" onclick="logoutUser()">Logout</button>
             <button class="eventBtn" onclick="loginUser()">Login</button>
         </div>
@@ -115,11 +116,11 @@
                 var customer_event_alias = "my commerce event alias";
 
                 branch.logEvent(
-                "PURCHASE",
-                event_and_custom_data,
-                content_items,
-                customer_event_alias,
-                function(err) { console.log(err); }
+                    "PURCHASE",
+                    event_and_custom_data,
+                    content_items,
+                    customer_event_alias,
+                    function(err) { console.log(err); }
                 );
             }
             function trackContentEvent(){
@@ -131,25 +132,25 @@
                 var customer_event_alias = "Pageview";
 
                 branch.logEvent(
-                "VIEW_ITEMS",
-                event_and_custom_data,
-                [],
-                customer_event_alias,
-                function(err) { console.log(err); }
+                    "VIEW_ITEMS",
+                    event_and_custom_data,
+                    [],
+                    customer_event_alias,
+                    function(err) { console.log(err); }
                 );
             }
             function trackLifeCycleEvent(){
                 var event_and_custom_data = {
                     "content_type": "email registered",
-                };
+                }
                 var customer_event_alias = "complete registration";
 
                 branch.logEvent(
-                "COMPLETE_REGISTRATION",
-                event_and_custom_data,
-                [],
-                customer_event_alias,
-                function(err) { console.log(err); }
+                    "COMPLETE_REGISTRATION",
+                    event_and_custom_data,
+                    [],
+                    customer_event_alias,
+                    function(err) { console.log(err); }
                 );
             }
             function trackCustomEvent(){
