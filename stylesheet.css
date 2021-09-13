@@ -1,7 +1,9 @@
-  
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
+
 .container {
-    display: inline-block;
-    flex-direction: column;
     margin: 15px 5px 5px;
 }
 
@@ -10,13 +12,14 @@
     margin: 15px 5px 5px;
 }
 
-.eventBtn {
-    width: 10rem;
-    height: 1.5rem;
-    margin: 5px;
+.containerBtn {
+    display: inline-block;
+    flex-direction: column;
+    margin: 15px 5px 5px;
 }
 
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: small;
+.eventBtn {
+    width: 9.5rem;
+    margin: 5px;
+    white-space: normal;
 }
